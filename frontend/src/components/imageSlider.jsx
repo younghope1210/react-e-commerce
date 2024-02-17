@@ -3,6 +3,7 @@ import React from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
+// npm install react-image-gallery react-responsive-carousel 설치
 const ImageSlider = ({ images }) => {
     return (
         <Carousel autoPlay showThumbs={false} infiniteLoop>

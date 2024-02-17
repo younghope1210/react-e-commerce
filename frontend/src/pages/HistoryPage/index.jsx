@@ -8,7 +8,7 @@ const HistoryPage = () => {
   const userData = useSelector(state => state.user?.userData);
 
   return (
-    <section>
+    <section className='w-10/12 max-w-4xl mx-auto mb-auto'>
       <div className='text-center m-7'>
         <h2 className='text-2xl'>구매내역 목록</h2>
       </div>

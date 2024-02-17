@@ -3,11 +3,11 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const port = 4000;
 
+require('dotenv').config()
 
-dotenv.config();
 
 // 미들웨어를 등록할 때는 app.use 사용
 app.use(cors());
@@ -39,6 +39,9 @@ app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
 app.use('/comments', require('./routes/comments'));
 app.use('/likes', require('./routes/likes'));
+app.use('/subscribers', require('./routes/subscribers'));
+
+
 // express.static = 정적파일 제공
 // path : node.js에서 제공해주는 빌트인 코어 모듈
 app.use(express.static(path.join(__dirname, '../uploads')));

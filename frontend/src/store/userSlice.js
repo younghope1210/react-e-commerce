@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit"
 import { registerUser, loginUser, authUser, logoutUser, addToCart,  getCartItems, removeCartItem, payProducts } from "./thunkFunctions";
 import { toast } from "react-toastify";
 
+// npm install react-toastify 설치하기
+// App.js에서 <ToastContainer /> 및 css 스타일 값 설정함
+
 const initialState = {
     useData: {
         id: '',
@@ -22,15 +25,16 @@ const userSlice = createSlice({
     extraReducers: (builder) =>  {
         builder
         // 회원가입
-            .addCase(registerUser.pending, (state) => {
-                state.isLoading = true;
+            .addCase(registerUser.pending, (state) => { // 대기
+                state.isLoading = true; // 로딩중
              })
-             .addCase(registerUser.fulfilled, (state) => {
-                state.isLoading = false;
+             .addCase(registerUser.fulfilled, (state) => { // 응답
+                state.isLoading = false; // 응답완료된 상태 
                 toast.info('축하합니다! 회원가입이 완료되었습니다!');
              })
-             .addCase(registerUser.rejected, (state, action) => {
+             .addCase(registerUser.rejected, (state, action) => { //거부
                 state.isLoading = false;
+                // thunkFunctions.js에서 thunkAPI.rejectWithValue 로 보내온 값
                 state.error = action.payload;
                 toast.error(action.payload);
              })
@@ -44,6 +48,7 @@ const userSlice = createSlice({
                 state.isLoading = false;
                 state.userData = action.payload;
                 state.isAuth = true; // 로그인 상태이면 true
+                // 로컬스토리지에 json web token 저장
                 localStorage.setItem('accessToken', action.payload.accessToken); // key값
             })
             .addCase(loginUser.rejected, (state, action) => {
@@ -139,6 +144,8 @@ const userSlice = createSlice({
             toast.error(action.payload);
         })
 
+
+        // 결제
         .addCase(payProducts.pending, (state) => {
             state.isLoading = true;
         })

@@ -78,7 +78,7 @@ const onSubmit = async (e) => {
          {/* Comment Form */}
     {OpenReply && 
       
-        <form style={{ display:'flex', marginTop:'10px', fontSize:'12px'}} onSubmit={onSubmit}>
+        <form style={{ display:'flex', marginTop:'10px', fontSize:'12px', width:'90%'}} onSubmit={onSubmit}>
 
         <textarea
             style={{ width:'100%', borderRadius:'5px', border:'1px solid #ddd',height:'62px'}}

@@ -17,21 +17,22 @@ const CartPage = () => {
    
     let cartItemIds = [];
 
+    // 유저데이터 안에 카트가 있고 카트에 담긴 상품이 0보다 크면
     if(userData?.cart && userData.cart.length > 0){
 
       userData.cart.forEach(item =>{
         
-        cartItemIds.push(item.id);
+        cartItemIds.push(item.id); // 배열에 아이템 아이디 담아준다
       
       })
 
-      const body = {
+      const body = { // backend router에 보낼 body값
 
         cartItemIds,
         userCart: userData.cart
 
       }
-      dispatch(getCartItems(body));
+      dispatch(getCartItems(body)); //cartItemIds 배열 디스패치로 리덕스에 보냄
     }
 
   }, [dispatch, userData])
@@ -42,7 +43,7 @@ const CartPage = () => {
 
     calculateTotal(cartDetail);
 
-  }, [cartDetail])
+  }, [cartDetail]) // cartDetail의 data가 변할 때마다 리렌더링
   
   const calculateTotal = (cartItems) => {
     let sum = 0;
@@ -64,7 +65,7 @@ const handlePaymentClick = () => {
 
 
   return (
-    <section>
+    <section className='w-10/12 max-w-4xl mx-auto mb-auto'>
         <div className='text-center m-7'>
           <h2 className='text-2xl'>
             장바구니 페이지
@@ -80,7 +81,7 @@ const handlePaymentClick = () => {
               <span className='font-bold'>합계:</span> {total} 원
             </p>
             <button
-              className='px-4 py-2 mt-5 text-white bg-black hover:bg-gray-500 rounded-md'
+              className='px-4 py-2 mt-5 text-white bg-black hover:bg-gray-500 rounded-md  hover:bg-gray-700 transition duration-500 ease-in-out'
               onClick={handlePaymentClick}
             >
               결제하기

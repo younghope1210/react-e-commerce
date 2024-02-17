@@ -34,6 +34,7 @@ const [product, setProduct] = useState({
   images: []
 
 })
+// name, value 값이 새롭게 발생할 때 
 
 const handleChange = (e) => {
 
@@ -48,7 +49,7 @@ const handleChange = (e) => {
 } 
 
 
-// 이미지 업로드
+// 상품 이미지 업로드
 
 const handleImages = (newImages) => {
   setProduct((prevState) => ({
@@ -69,6 +70,8 @@ const navigate = useNavigate();
 const handleSubmit = async (event) => {
   event.preventDefault();
 
+  // const { title, description,price, images, categorys } = product;
+
   const body = {
     writer: userData.id,
     ...product
@@ -76,7 +79,7 @@ const handleSubmit = async (event) => {
 
   try {
     await axiosInstance.post('/products', body);
-    navigate('/');
+    navigate('/'); // 메인페이지로 이동
   } catch (error) {
     console.error(error);
   }
@@ -85,7 +88,7 @@ const handleSubmit = async (event) => {
 
 
   return (
-    <section>
+    <section className='w-10/12 max-w-4xl mx-auto mb-auto'>
       <div>
         <h1 
           className='text-3xl text-center mt-5'

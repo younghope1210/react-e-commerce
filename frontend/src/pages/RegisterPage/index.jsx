@@ -6,16 +6,20 @@ import { registerUser } from '../../store/thunkFunctions'
 import { useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
-  const {
+ 
+  // npm install react-hook-form 설치하기
+
+ const {
     register,
-    handleSubmit,
+    handleSubmit, //  input의 value 들 'email, password, name'을 받아온다
     formState: { errors },
     reset
-  } = useForm({ mode: 'onChange' })
+  } = useForm({ mode: 'onChange' }) // onchange 이벤트가 발생할 때 유효성 체크를 한다 'bluer'등 옵션 설정 가능
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // 회원가입 버튼 클릭시 
   const onSubmit = ({ email, password, name }) => {
 
     const body = {
@@ -25,7 +29,7 @@ const RegisterPage = () => {
       image: `https://via.placeholder.com/600x400?text=no+user+image`
     }
 
-    dispatch(registerUser(body));
+    dispatch(registerUser(body)); // backend로 보내기 전에 리덕스로 넘김
     reset();
     navigate('/login');
   }
@@ -62,6 +66,7 @@ const RegisterPage = () => {
               className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
               {...register('email', userEmail)}
             />
+            {/* 에러처리 */}
             {
               errors?.email &&
               <div>
@@ -83,6 +88,7 @@ const RegisterPage = () => {
               className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
               {...register('name', userName)}
             />
+            {/* 에러처리 */}
             {
               errors?.name &&
               <div>
@@ -104,6 +110,7 @@ const RegisterPage = () => {
               className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
               {...register('password', userPassword)}
             />
+            {/* 에러처리 */}
             {
               errors?.password &&
               <div>
@@ -115,7 +122,7 @@ const RegisterPage = () => {
           </div>
 
           <div className='mt-6'>
-            <button type='submit' className='w-full px-4 py-2 text-white duration-200 bg-black rounded-md hover:bg-gray-700'>
+            <button type='submit' className='w-full px-4 py-2 text-white transition duration-500 ease-in-out bg-black rounded-md hover:bg-gray-700'>
               회원가입
             </button>
           </div>

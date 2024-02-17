@@ -52,12 +52,12 @@ const ReplyComment = ({commentLists, parentCommentId, refreshFunction, comment})
 
 return (
     
-    <div>
+    <div className='transition duration-500 ease-in-out'>
         {ChildCommentNumber > 0 && 
 
         <p 
         onClick={onHandleChange}
-        style={{ fontSize:'12px', margin:'0', color:'#C73A59', cursor:'pointer',transition:'1s'}}
+        style={{ fontSize:'12px', margin:'0', color:'#C73A59', cursor:'pointer'}}
 
         >
         {ChildCommentNumber}개의 댓글 확인하기
@@ -68,7 +68,7 @@ return (
 
         {OpenReply &&
 
-            <p style={{ height:'auto'}}>
+            <p className='transition duration-500 ease-in-out'>
             {renderReplyComment(parentCommentId)}
             </p>
 

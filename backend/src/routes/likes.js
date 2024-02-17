@@ -5,12 +5,6 @@ const { Dislike } = require("../models/Dislike");
 const { auth } = require('../middleware/auth');
 
 
-
-// variable = { productId : productId, userId : userData._id}
-
-//   variable = { commentId : comment._id, userId : userData._id}
-
-
 // 좋아요를 받았는지 체크 
 
 router.post('/getLikes', auth, (req, res, next) => {

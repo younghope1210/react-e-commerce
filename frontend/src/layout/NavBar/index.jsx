@@ -12,12 +12,12 @@ const Navbar = () => {
   }
 
   return (
-    <section className='relative z-10 text-white bg-gray-900 '>
+    <section className='h-12 relative z-10 pt-1 pb-3 border-b'>
       <div className='w-full'>
-        <div className='flex items-center justify-between mx-5 sm:mx-10 lg:mx-20'>
+        <div className='text-gray-500 flex items-center justify-between mx-5 sm:mx-10 lg:mx-20'>
           {/* logo */}
 
-          <div className='flex items-center text-2xl h-14 font-logo'>
+          <div className='flex items-center text-3xl font-log text-black font-logo'>
             <Link to="/" >
               Fragrance
             </Link>

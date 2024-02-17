@@ -58,7 +58,7 @@ const handleClick = (e) => {
     {commentLists?.map((comment, index) => (
         (!comment.responseTo && 
         <div key={index} style={{borderBottom:'1px dotted #ddd', paddingBottom:'10px'}}>  
-            <SingleComment refreshFunction={refreshFunction} comment={comment} commentId={productId} parentCommentId={comment._id} product={product} />
+            <SingleComment refreshFunction={refreshFunction} comment={comment} commentId={productId} product={product} />
            <ReplyComment refreshFunction={refreshFunction}  commentLists={commentLists} parentCommentId={comment._id} commentId={productId} />
             {/* <ReplyComment refreshFunction={refreshFunction}  parentCommentId={comment._id} commentLists={commentLists} commentId={productId} /> */}
         </div> 

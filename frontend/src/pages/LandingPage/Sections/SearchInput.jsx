@@ -5,7 +5,7 @@ const SearchInput = ({searchTerm, onSearch}) => {
   return (
     
     <input 
-      className='my-4 p-1 border border-gray-300 rounded-md'
+      className='text-s my-4 p-1 border border-gray-300 rounded-md w-80'
       type='text'
       placeholder='상품검색'
       onChange={onSearch}

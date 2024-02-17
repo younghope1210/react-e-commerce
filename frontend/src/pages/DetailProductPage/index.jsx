@@ -7,18 +7,19 @@ import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
 import Comment from './Sections/Comment';
 
-// import { useSelector } from 'react-redux';
+
+
 
 const DetailProductPage = () => {
 
- // 리덕스 안의 state에서 user 정보 가져옴
-  // const userData = useSelector(state => state.user?.userData);
+
+// App.js 의 라우트 <Route path="/product/:productId"/> 에서 id값 가져온다
   const { productId } =  useParams();
 
   const [product, setProduct] = useState(null);
   const [Comments, setComments] = useState([])
 
-
+  // 상품 가져오기  
     const getHandler = () => {
       return axiosInstance.get(`/products/${productId}?type=single`).then((res) => setProduct(res.data[0]))
     }
@@ -27,10 +28,11 @@ const DetailProductPage = () => {
 
               // 코멘트에 대한 body
               const variableComment = {
-                commentId: productId 
+
+                productId: productId
             }
     
-
+ // 코멘트 가져오기 
       return axiosInstance.post('/comments/getComment', variableComment ).then((res) => setComments(res.data.reviews))
     }
   
@@ -52,14 +54,17 @@ const DetailProductPage = () => {
       setComments(Comments.concat(newComment))
 
   }
-  
+ 
+// 불러들일 상품이 없을 경우 null 처리  
 if(!product) return null;
 
   return (
-    <section>
-      <div className='text-center'>
-        <h1 className='py-8 text-2xl'>{product.title}</h1>
-           
+    <section className='w-10/12 max-w-5xl mx-auto mb-auto'>
+      <div className=''>
+        <h2 className='py-8 text-2xl text-center'>
+           {product.title}
+           </h2>
+     
       </div>
 
       <div className='flex gap-4'>

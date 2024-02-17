@@ -26,7 +26,7 @@ const onSubmit = ({ email, password }) => {
     password: password,
   }
 
-  dispatch(loginUser(body));
+  dispatch(loginUser(body)); // backend로 보내기 전에 리덕스로 넘김
 
   reset();
   navigate('/');
@@ -112,7 +112,7 @@ const userPassword = {
           >
             <button 
               type="submit"
-              className='w-full bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 duration-200 '
+              className='w-full bg-black text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-500 ease-in-out'
             > 
               로그인
             </button>

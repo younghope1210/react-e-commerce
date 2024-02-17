@@ -186,7 +186,7 @@ if(!product) return null;
        <span
         onClick={onLike}
         key="comment-basic-like"
-        className='flex-row inline-block align-middle text-base pt-1'>
+        className='flex-row inline-block align-middle text-base pt-1 cursor-pointer'>
        
           {LikeAction === 'liked' ? <BiSolidLike /> : <BiLike /> }
           
@@ -198,7 +198,7 @@ if(!product) return null;
        <span
         onClick={onDisLike}
         key="comment-basic-dislike"
-        className='flex-row inline-block align-middle text-base pt-1'>
+        className='flex-row inline-block align-middle text-base pt-1 cursor-pointer'>
        
           {DislikeAction === 'disliked' ? <BiSolidDislike /> : <BiDislike />}
           

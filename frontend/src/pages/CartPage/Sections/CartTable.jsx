@@ -28,7 +28,9 @@ const CartTable = ({ products, onRemoveItem }) => {
                     {product.price} 원
                 </td>
                 <td>
-                    <button onClick={() => onRemoveItem(product._id)}>
+                    <button 
+                    className='border p-1 rounded-md hover:bg-gray-700 transition duration-500 ease-in-out text-gray-400'
+                    onClick={() => onRemoveItem(product._id)}>
                         지우기
                     </button>
                 </td>

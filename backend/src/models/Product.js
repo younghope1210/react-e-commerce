@@ -39,7 +39,7 @@ productSchema.index({
     description: 'text'
 }, {
     weights: {
-        title: 5, // 상품명으로 찾는 걸 우선순위로
+        title: 5, // 상품명으로 찾기 우선순위로
         description: 1
     }
 })

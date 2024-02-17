@@ -3,6 +3,8 @@ import React from 'react'
 import Dropzone from 'react-dropzone'
 import axiosInstance from '../utils/axios';
 
+
+// npm install react-dropzone 설치
 // eslint-disable-next-line react/prop-types
 const FileUpload = ({ onImageChange, images }) => {
 
@@ -17,7 +19,7 @@ const FileUpload = ({ onImageChange, images }) => {
 
     try {
       const response = await axiosInstance.post('/products/image', formData, config);
-      onImageChange([...images, response.data.fileName]);
+      onImageChange([...images, response.data.fileName]); //props로 부모 컨모넌트에 보내기
 
     } catch (error) {
       console.error(error);
@@ -25,7 +27,7 @@ const FileUpload = ({ onImageChange, images }) => {
 
   }
 
-
+// 상품 이미지 클릭시 삭제시키기
   const handleDelete = (image) => {
     // eslint-disable-next-line react/prop-types
     const currentIndex = images.indexOf(image); 

@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Product } = require('../models/Product');
 const { auth } = require('../middleware/auth');
-// const multer = require('multer');
 
 // 멀터를 이용해서 클라우디너리라는 이미지 호스팅에 사진 업로드
 const cloudinary = require('cloudinary').v2;
@@ -68,13 +67,15 @@ router.post('/', auth, (req, res, next) => {
 router.get('/', async(req, res, next) => {
 
     // asc 오름차순  , desc 내림차순
-    const order = req.query.order ? req.query.order : 'desc';
+    const order = req.query.order ? req.query.order : 'asc'; // 내림차순으로 보여지게 선언
     const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     const limit = req.query.limit ? Number(req.query.limit) : 20;
     const skip = req.query.skip ? Number(req.query.skip) : 0;
-    const term = req.query.searchTerm;
+    const term = req.query.searchTerm; // 상품 검색
 
+    // 체크박스 라디오박스로 상품 search
     let findArgs = {};
+
     for(let key in req.query.filters){
         if(req.query.filters[key].length > 0){
             if(key === "price" ){
@@ -94,8 +95,8 @@ router.get('/', async(req, res, next) => {
             }
         }
     }
-    
-    if(term){
+    // mongoDB 지원
+    if(term){ //상품검색
 
         findArgs["$text"] = { $search: term }
 
@@ -109,7 +110,10 @@ router.get('/', async(req, res, next) => {
         .skip(skip)
         .limit(limit)
 
+        //mongoDB에 저장된 총 상품 document 갯수를 가져옴 
         const productsTotal = await Product.countDocuments(findArgs);
+        
+        //skip + limit 한 합이 총 상품 document 갯수보다 작다면 hasMore은 true
         const hasMore = skip + limit < productsTotal ? true : false;
 
         return res.status(200).json({
@@ -128,8 +132,11 @@ router.get('/', async(req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
 
+// App.js 의 라우트 <Route path="/product/:productId"/> 에서 id값 가져온다   
     const type = req.query.type;
     let productIds = req.params.id;
+
+    
 
  // id=32423423423,345345345345345,345345345
 // productIds = ['32423423423', '345345345345345345', '345345345345345']
@@ -146,7 +153,7 @@ router.get('/:id', async (req, res, next) => {
 
     try{
        const product =  await Product
-        .find({_id: {$in: productIds}})
+        .find({_id: {$in: productIds}}) // $in => 여러개의 producId를 찾고자 할때 사용 
         .populate('writer');
 
         return res.status(200).send(product);

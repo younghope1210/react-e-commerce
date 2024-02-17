@@ -6,12 +6,12 @@ import { logoutUser } from '../../../store/thunkFunctions';
 import { AiOutlineShoppingCart} from 'react-icons/ai';
 
 const routes = [
-  { to: '/login', name: '로그인', auth: false },
-  { to: '/register', name: '회원가입', auth: false },
-  { to: '/product/upload', name: '업로드', auth: true },
-  { to: '/user/cart', name: '카트', auth: true, icon: <AiOutlineShoppingCart style={{ fontSize: '1.4rem' }} /> },
-  { to: '/history', name: '주문목록', auth: true },
-  { to: '', name: '로그아웃', auth: true },
+  { to: '/login', name: 'Login', auth: false },
+  { to: '/register', name: 'Join', auth: false },
+  { to: '/product/upload', name: 'Upload', auth: true },
+  { to: '/user/cart', name: 'Cart', auth: true, icon: <AiOutlineShoppingCart style={{ fontSize: '1.4rem' }} /> },
+  { to: '/history', name: 'Order', auth: true },
+  { to: '', name: 'Logout', auth: true },
 ]
 
 
@@ -36,11 +36,11 @@ const NavItem = ({ mobile }) => {
 
 
  return (
-  <ul className={`text-md justify-center w-full flex gap-4 ${mobile && "flex-col bg-gray-900 h-full"} items-center`}>
+  <ul className={`text-md justify-center w-full flex gap-4 ${mobile && "flex-col bg-white text-gray-500 h-full pd-2"} items-center`}>
     {routes.map(({ to, name, auth, icon }) => {
       if (isAuth !== auth) return null;
 
-      if (name === '로그아웃') {
+      if (name === 'Logout') {
         return <li key={name} className='py-2 text-center cursor-pointer'>
           <Link
             onClick={handleLogout}
@@ -48,11 +48,11 @@ const NavItem = ({ mobile }) => {
             {name}
           </Link>
         </li>
-      } else if (icon) {
+      } else if (icon) { // 아이콘이 있는 메뉴는
         return <li className='relative py-2 text-center cursor-pointer' key={name}>
           <Link to={to} >
             {icon}
-            <span className='absolute top-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -right-3'>
+            <span className='absolute top-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full -right-3'>
             {cart?.length}
             </span>
           </Link>

@@ -34,7 +34,7 @@ router.post('/saveComment', auth, (req, res, next) => {
 router.post('/getComment', auth, (req, res, next) => {
 
     try{
-        Comment.find({'postId': req.body.videoId }) 
+        Comment.find({'commentId': req.body.productId }) 
         .populate('writer')
         .then(reviews => {
             res.json({

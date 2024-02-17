@@ -28,10 +28,10 @@ function Layout() {
       />
 
       <Navbar />
-      <main className='w-10/12 max-w-4xl mx-auto mb-auto'>
+      <main className='w-full mx-auto mb-auto'>
         <Outlet />
       </main>
-      <Footer />
+      <Footer className='w-full mx-auto mb-auto ' />
     </div>
   )
 }
